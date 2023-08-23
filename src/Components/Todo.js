@@ -1,42 +1,45 @@
 import React, { useState } from "react";
 
 const Todo = () => {
-  const [input, setInput] = useState("");
+  const [inp, setInp] = useState("");
   const [todo, setTodo] = useState([]);
 
-  const add_todo = () => {
-    if (!input) {
+  const addToDo = () => {
+    if (!inp) {
     } else {
-      setTodo([...todo, input]);
-      setInput("");
+      setTodo([...todo, inp]);
+      setInp("");
     }
   };
-
-  const remove = (id) => {
-    console.log("remove")
-    const update_todo = todo.filter((e, i) => {
-      return i !== id;
+  const deleteTodo = (i) => {
+    let updatedTodo = todo.filter((e, id) => {
+      return id !== i;
     });
-    setTodo(update_todo);
+    setTodo(updatedTodo);
   };
-
   return (
     <div>
-      <h1>todo</h1>
       <input
         type="text"
-        value={input}
+        value={inp}
         onChange={(e) => {
-          setInput(e.target.value);
+          setInp(e.target.value);
         }}
       />
-      <button onClick={add_todo}>ADD</button>
 
+      <button onClick={addToDo}>ADD</button>
       {todo.map((e, i) => {
         return (
           <p key={i}>
+            {" "}
             {e}
-            <button onClick={(i) => remove(i)}>DELETE</button>
+            <button
+              onClick={() => {
+                deleteTodo(i);
+              }}
+            >
+              delete
+            </button>
           </p>
         );
       })}
