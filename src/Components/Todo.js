@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "./Button";
+import Input from "./Input";
 
 const Todo = () => {
   const [inp, setInp] = useState("");
@@ -27,15 +28,19 @@ const Todo = () => {
   return (
     <div>
       <Button name="click here" type="submit" onClick={btnClick} color="blue"/>
-      <input
+      <Input type="text" value={inp} onChange={(e) => {
+        setInp(e.target.value);
+      }} />
+      {/* <input
         type="text"
         value={inp}
         onChange={(e) => {
           setInp(e.target.value);
         }}
-      />
+      /> */}
 
-      <button onClick={addToDo}>ADD</button>
+      {/* <button onClick={addToDo}>ADD</button> */}
+      <Button onClick={addToDo} name="ADD" color="violet" bg="green"/>
       {todo.map((e, i) => {
         return (
           <p key={i}>
@@ -46,6 +51,8 @@ const Todo = () => {
                 deleteTodo(i);
               }}
             >
+
+              
               delete
             </button>
           </p>
