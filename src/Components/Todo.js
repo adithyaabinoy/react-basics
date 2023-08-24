@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import Button from "./Button";
 
 const Todo = () => {
   const [inp, setInp] = useState("");
   const [todo, setTodo] = useState([]);
+
+
 
   const addToDo = () => {
     if (!inp) {
@@ -17,8 +20,13 @@ const Todo = () => {
     });
     setTodo(updatedTodo);
   };
+
+  const btnClick = () => {
+    alert("yay i learned props wohooo ..")
+  }
   return (
     <div>
+      <Button name="click here" type="submit" onClick={btnClick} color="blue"/>
       <input
         type="text"
         value={inp}
